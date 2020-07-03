@@ -1,0 +1,195 @@
+{
+    "Remote Work Satisfaction": [
+        [
+            "What percentage of your work time do you spend working remotely?",
+            "57% 100%",
+            "16.5% 76 to 99%",
+            "10% 1 to 25%",
+            "8.5% 51 to 75%",
+            "8% 26 to 50%"
+        ],
+        [
+            "Which of the following statements best describes you:",
+            "70% I am happy with the amount of time I work remotely.",
+            "19% I would like to work remotely more often.",
+            "11% I would like to work remotely less often."
+        ],
+        [
+            "Would you like to work remotely, at least some of the time, for the rest of your career?",
+            "98% Yes",
+            "2% No"
+        ],
+        [
+            "Would you recommend remote work to others?",
+            "97% Yes",
+            "3% No"
+        ]
+    ],
+    "The Benefits and Struggles of Working Remotely": [
+        [
+            "What\u2019s your biggest struggle with working remotely?",
+            "20% Difficulties with collaboration and communication",
+            "20% Loneliness",
+            "18% Not being able to unplug",
+            "12% Distractions at home",
+            "10% Being in a different timezone than teammates",
+            "7% Staying motivated",
+            "5% Taking vacation time",
+            "3% Finding reliable wifi",
+            "5% Other"
+        ],
+        [
+            "What\u2019s the biggest benefit you see to working remotely?",
+            "32% Ability to have a flexible schedule",
+            "26% Flexibility to work from any location",
+            "21% Not having to commute",
+            "11% Ability to spend time with family",
+            "7% Ability to work from home",
+            "3% Other"
+        ],
+        [
+            "How much vacation time did you take in the past year?",
+            "22% 3 weeks",
+            "21% 2 weeks",
+            "17% 4 weeks",
+            "10% 1 week",
+            "8% 5 weeks",
+            "6% None",
+            "6% Less than 1 week",
+            "6% More than 6 weeks",
+            "4% 6 weeks"
+        ],
+        [
+            "How much vacation time does your company offer each year?",
+            "33% Unlimited",
+            "17% 4 weeks",
+            "14% 3 weeks",
+            "10% 2 weeks",
+            "10% 5 weeks",
+            "8.5% None",
+            "4% 6 weeks",
+            "2% More than 6 weeks",
+            "1% 1 week",
+            "0.5% Less than 1 week"
+        ]
+    ],
+    "Remote Work Locations": [
+        [
+            "What location do you primarily work from?",
+            "80% Home",
+            "9% Company's office",
+            "7% Coworking spaces",
+            "3% Coffee shops",
+            "0.5% Libraries",
+            "0.5% Other"
+        ],
+        [
+            "What is the second most common location that you work from?",
+            "27% Coffee shops",
+            "22% Home",
+            "16% Company's office",
+            "14% Not applicable",
+            "12% Coworking spaces",
+            "4% Libraries",
+            "5% Other"
+        ]
+    ],
+    "How Companies Are Thinking About Remote Work in 2020": [
+        [
+            "Business Owners: Did you always intend to support remote work?",
+            "87% Yes",
+            "13% No"
+        ],
+        [
+            "Employees and Business Owners: What is your workplace\u2019s stance on remote work?",
+            "43% Part of the team is full-time remote and part of the team works out of the same office.",
+            "30% Everyone at my company works remotely",
+            "15% At my company we can work from home as needed",
+            "9% At my company we can work remotely a certain number of days per week/month",
+            "3% I am a solo business or freelancer and work remotely"
+        ],
+        [
+            "Employees and Business Owners: How many full-time employees does your company have?",
+            "26% 11 to 50",
+            "18% Fewer than 10",
+            "17% More than 1,001",
+            "16% 101 to 500",
+            "13% 51 to 100",
+            "7% 501 to 1,000",
+            "3% Just me"
+        ],
+        [
+            "Employees and Business Owners: What percentage of your company works remotely?",
+            "33% 1 to 25%",
+            "28% 100%",
+            "19% 26 to 50%",
+            "11% 51 to 75%",
+            "9% 76 to 99%"
+        ]
+    ],
+    "Remote Work Expenses": [
+        [
+            "Does your company pay for your home internet?",
+            "80% No",
+            "15% Yes",
+            "5% Partially"
+        ],
+        [
+            "Does your company pay for your cell phone?",
+            "72% No",
+            "21% Yes",
+            "7% Partially"
+        ],
+        [
+            "Does your company cover the cost of a coworking membership?",
+            "72% No",
+            "22% Yes",
+            "6% Partially"
+        ],
+        [
+            "Does your company cover the cost of drinks/food at coffee shops?",
+            "87% No",
+            "9% Yes",
+            "4% Partially"
+        ]
+    ],
+    "Location by country": [
+        [
+            "Forty-seven percent of respondents selected that they currently live in the United States, followed by Canada (5.5 percent), United Kingdom (5.2 percent) and India (4.3 percent). Other countries selected were: Spain (3.2 percent); France (2.6 percent); Germany (2.4 percent); Australia (2 percent); Portugal (1.5 percent); Poland (1.4 percent); Brazil (1.3 percent); Mexico (1.2 percent); Ukraine (1.2 percent); Russian Federadion (1.1 percent); Italy (1.1 percent); Netherlands (1 percent); and the remaining 18 percent of countries had 1 percent or fewer respondents select them as options."
+        ]
+    ],
+    "Industry breakdown": [
+        [
+            "Forty-one percent of those who took the survey work at organizations in software space. Other industries include: IT and Services (19.5 percent); Marketing (8.7 percent); Other (7.3 percent); Financial Services (4.6 percent); Media and Publishing (3.6 percent); Education (3.3 percent); E-commerce (3 percent); Medical and Healthcare (3 percent); Consumer products (2.3 percent); Travel and Tourism (1.6 percent); Non-profit (1.5 percent); Government (0.6 percent); and Law and Legal Services (0.6 percent)."
+        ]
+    ],
+    "Work experience": [
+        [
+            "When asked about what best describes the work they do, 34.3 percent of respondents selected Engineering, followed by 12.7 percent of respondents choosing Marketing and Advertising. Other work options include: Leadership (8.9 percent); Design (7.1 percent); Other (5.1 percent); Product (6.9 percent); Operations (6.5 percent); Customer Support (6 percent); Sales (4.1 percent); Data (3.6 percent); Human Resources (3.3 percent); and Finances (1.4 percent.)"
+        ],
+        [
+            "When asked about the level that they are in their current role, 32.6 percent of respondents selected Senior level, followed by 31/1 percent selecting Professional level. The next most selected response was Management level with 18.1 percent, Executive level with 13.2 percent, and finally Entry level with 5 percent having selected it."
+        ],
+        [
+            "Sixty-seven percent of respondents chose Employee as the term that best suited them. Of the remaining respondents, 23 percent chose Freelancer/Self-employed and 10 percent chose Business owner."
+        ]
+    ],
+    "Remote work experience": [
+        [
+            "The respondents to this survey have worked remotely for varying amounts of time, the most popular response was \u201c1 year to 4 years\u201d with 42.2 percent of respondents selecting it, followed by \u201cmore than 4 years\u201d with 33.9 percent of respondents, then \u201cless than six months\u201d with 12.6 percent of respondents, and finally \u201c6 months to 11 months\u201d with 11.3 percent of respondents."
+        ]
+    ],
+    "Salary": [
+        [
+            "Below is the breakdown of salary ranges for respondents in USD.",
+            "18.6% $50,001 to $75,000",
+            "16.8% $75,001 to $100,000",
+            "14.2% $25,001 to $50,000",
+            "12.1% up to $25,000",
+            "12% $100,000 to $125,000",
+            "10.8% $125,001 to $150,000",
+            "9.7% $150,001 to $200,000",
+            "5.9% Over $200,000"
+        ]
+    ]
+}
