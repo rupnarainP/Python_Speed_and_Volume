@@ -3,5 +3,5 @@
 # Run the requirements.txt file using the command below
 pip install -r requirements.txt
 
-# Start the application throught the Main.py file
+# Start the application through the Main.py file
 python Main.py
