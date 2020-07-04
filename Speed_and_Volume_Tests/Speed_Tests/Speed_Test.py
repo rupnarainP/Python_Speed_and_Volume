@@ -58,7 +58,11 @@ class Speed_test:
 
         json_Object = json.loads(json1)
 
-        # to_file = json.dumps(json_Object, indent=4)
+        for ar in json_Object:
+            for glob in ar:
+                if 'Global' == ar['n']:
+                    del ar[glob]
+                    break
 
         with open('Inputs/input.txt', 'w') as file:
             file.writelines(json1)
