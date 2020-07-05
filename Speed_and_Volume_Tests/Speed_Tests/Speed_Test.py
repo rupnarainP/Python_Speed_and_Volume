@@ -58,10 +58,16 @@ class Speed_test:
 
         json_Object = json.loads(json1)
 
-        for ar in json_Object:
-            for glob in ar:
-                if 'Global' == ar['n']:
-                    del ar[glob]
+        found = False
+
+        for ar in range(len(json_Object)):
+            if found:
+                break
+
+            for __ in range(len(json_Object[ar])):
+                if 'Global' == json_Object[ar]['n']:
+                    del json_Object[ar]
+                    found = True
                     break
 
         with open('Inputs/input.txt', 'w') as file:

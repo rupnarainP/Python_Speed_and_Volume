@@ -2,10 +2,11 @@ import xlsxwriter
 import concurrent.futures
 import time
 from API import Calculation_API as calc
+from Enums import Enum
+from Enums import Enum_Excel
 
 data = ''
 workbook = ''
-
 
 class Excel:
 
@@ -14,69 +15,211 @@ class Excel:
         global data
         data = json_data
 
-    def create_rows_and_columns(self, worksheet, row, col, year, duration, name):
+    def create_rows_and_columns_speeds(self, worksheet, worksheet2, worksheet3, row, col, year, duration, data):
+        row2 = row
+        row3 = row
+
+        for country in data:
+            fixed = calc.average_speeds(country['fd'])
+            mobile = calc.average_speeds(country['md'])
+
+            worksheet.write(row, col, year)
+            worksheet.write(row, col + 1, country['n'])
+            worksheet.write(row, col + 2, duration)
+            worksheet.write(row, col + 3, fixed)
+            worksheet.write(row, col + 4, mobile)
+
+            for i in range(len(country['d'])):
+                worksheet.write(row, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+
+            row += 1
+
+            if country['n'] == 'Australia' or \
+                    country['n'] == 'Austria' or \
+                    country['n'] == 'Belgium' or \
+                    country['n'] == 'Canada' or \
+                    country['n'] == 'Cyprus' or \
+                    country['n'] == 'Czechia' or \
+                    country['n'] == 'Denmark' or \
+                    country['n'] == 'Estonia' or \
+                    country['n'] == 'Finland' or \
+                    country['n'] == 'France' or \
+                    country['n'] == 'Germany' or \
+                    country['n'] == 'Greece' or \
+                    country['n'] == 'Hong Kong (SAR)' or \
+                    country['n'] == 'Ireland' or \
+                    country['n'] == 'Israel' or \
+                    country['n'] == 'Italy' or \
+                    country['n'] == 'Japan' or \
+                    country['n'] == 'Latvia' or \
+                    country['n'] == 'Lithuania' or \
+                    country['n'] == 'Luxembourg' or \
+                    country['n'] == 'Macau (SAR)' or \
+                    country['n'] == 'Netherlands' or \
+                    country['n'] == 'New Zealand' or \
+                    country['n'] == 'Norway' or \
+                    country['n'] == 'Portugal' or \
+                    country['n'] == 'Singapore' or \
+                    country['n'] == 'Slovakia' or \
+                    country['n'] == 'Slovenia' or \
+                    country['n'] == 'Spain' or \
+                    country['n'] == 'Sweden' or \
+                    country['n'] == 'Switzerland' or \
+                    country['n'] == 'Taiwan' or \
+                    country['n'] == 'United Kingdom' or \
+                    country['n'] == 'United States':
+                worksheet2.write(row2, col, year)
+                worksheet2.write(row2, col + 1, country['n'])
+                worksheet2.write(row2, col + 2, duration)
+                worksheet2.write(row2, col + 3, fixed)
+                worksheet2.write(row2, col + 4, mobile)
+
+                for i in range(len(country['d'])):
+                    worksheet2.write(row2, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+
+                row2 += 1
+
+            else:
+                worksheet3.write(row3, col, year)
+                worksheet3.write(row3, col + 1, country['n'])
+                worksheet3.write(row3, col + 2, duration)
+                worksheet3.write(row3, col + 3, fixed)
+                worksheet3.write(row3, col + 4, mobile)
+
+                for i in range(len(country['d'])):
+                    worksheet3.write(row3, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+
+                row3 += 1
+
+
+    def create_rows_and_columns_volume(self, worksheet, worksheet2, worksheet3, row, col, year, duration, data):
+        row2 = row
+        row3 = row
+
+        for country in data:
+            fixed = calc.average_volumes(country['fvc'])
+            mobile = calc.average_volumes(country['mvc'])
+
+            worksheet.write(row, col, year)
+            worksheet.write(row, col + 1, country['n'])
+            worksheet.write(row, col + 2, duration)
+            worksheet.write(row, col + 3, fixed)
+            worksheet.write(row, col + 4, mobile)
+
+            for i in range(len(country['d'])):
+                worksheet.write(row, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
+                                                                     float(country['mvc'][i] * 100)))
+            row += 1
+
+            if country['n'] == 'Australia' or \
+                    country['n'] == 'Austria' or \
+                    country['n'] == 'Belgium' or \
+                    country['n'] == 'Canada' or \
+                    country['n'] == 'Cyprus' or \
+                    country['n'] == 'Czechia' or \
+                    country['n'] == 'Denmark' or \
+                    country['n'] == 'Estonia' or \
+                    country['n'] == 'Finland' or \
+                    country['n'] == 'France' or \
+                    country['n'] == 'Germany' or \
+                    country['n'] == 'Greece' or \
+                    country['n'] == 'Hong Kong (SAR)' or \
+                    country['n'] == 'Ireland' or \
+                    country['n'] == 'Israel' or \
+                    country['n'] == 'Italy' or \
+                    country['n'] == 'Japan' or \
+                    country['n'] == 'Latvia' or \
+                    country['n'] == 'Lithuania' or \
+                    country['n'] == 'Luxembourg' or \
+                    country['n'] == 'Macau (SAR)' or \
+                    country['n'] == 'Netherlands' or \
+                    country['n'] == 'New Zealand' or \
+                    country['n'] == 'Norway' or \
+                    country['n'] == 'Portugal' or \
+                    country['n'] == 'Singapore' or \
+                    country['n'] == 'Slovakia' or \
+                    country['n'] == 'Slovenia' or \
+                    country['n'] == 'Spain' or \
+                    country['n'] == 'Sweden' or \
+                    country['n'] == 'Switzerland' or \
+                    country['n'] == 'Taiwan' or \
+                    country['n'] == 'United Kingdom' or \
+                    country['n'] == 'United States':
+                worksheet2.write(row2, col, year)
+                worksheet2.write(row2, col + 1, country['n'])
+                worksheet2.write(row2, col + 2, duration)
+                worksheet2.write(row2, col + 3, fixed)
+                worksheet2.write(row2, col + 4, mobile)
+
+                for i in range(len(country['d'])):
+                    worksheet2.write(row2, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
+                                                                         float(country['mvc'][i] * 100)))
+                row2 += 1
+
+            else:
+                worksheet3.write(row3, col, year)
+                worksheet3.write(row3, col + 1, country['n'])
+                worksheet3.write(row3, col + 2, duration)
+                worksheet3.write(row3, col + 3, fixed)
+                worksheet3.write(row3, col + 4, mobile)
+
+                for i in range(len(country['d'])):
+                    worksheet3.write(row3, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
+                                                                         float(country['mvc'][i] * 100)))
+                row3 += 1
+
+
+
+    def create_rows_and_columns(self, worksheet, worksheet2, worksheet3, row, col, year,
+                                duration, name):
         global data
 
         # Data
+        if name == Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value:
+            self.create_rows_and_columns_speeds(worksheet, worksheet2, worksheet3, row, col, year, duration, data)
 
-        if name == 'Speed Test':
-            for country in data:
-                for i in range(len(country['d'])):
-                    fixed = calc.average_speeds(country['fd'])
-                    mobile = calc.average_speeds(country['md'])
+        elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
+            self.create_rows_and_columns_volume(worksheet, worksheet2, worksheet3, row, col, year, duration, data)
 
-                    worksheet.write(row, col, year)
-                    worksheet.write(row, col + 1, country['n'])
-                    worksheet.write(row, col + 2, duration)
-                    worksheet.write(row, col + 3, fixed)
-                    worksheet.write(row, col + 4, mobile)
+    @staticmethod
+    def set_worksheet_attributes(worksheet, col):
+        worksheet.set_column(0, 0, 10)
+        worksheet.set_column(1, 1, 20)
+        worksheet.set_column(3, col, 30)
+        worksheet.freeze_panes(1, 0)  # Freeze the first row.
 
-                    worksheet.write(row, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
-
-                row += 1
-
-        else:
-            for country in data:
-                for i in range(len(country['d'])):
-                    fixed = calc.average_volumes(country['fvc'])
-                    mobile = calc.average_volumes(country['mvc'])
-
-                    worksheet.write(row, col, year)
-                    worksheet.write(row, col + 1, country['n'])
-                    worksheet.write(row, col + 2, duration)
-                    worksheet.write(row, col + 3, fixed)
-                    worksheet.write(row, col + 4, mobile)
-
-                    worksheet.write(row, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
-                                                                         float(country['mvc'][i] * 100)))
-
-                row += 1
+        return worksheet
 
     def create_worksheets(self, name, excel_format):
-        if name == 'Speed Test':
-            print('Creating speed test worksheet ')
-
-        else:
-            print('Creating volume test worksheet ')
-
-        global data
+        global data, worksheet, worksheet2, worksheet3
         global workbook
 
-        worksheet = workbook.add_worksheet(name)
+        if name == Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value:
+            print('Creating speed test worksheet ')
+            worksheet = workbook.add_worksheet(name)
+            worksheet2 = workbook.add_worksheet(Enum_Excel.Spreadsheet_name.SPEED_TEST_DEVELOPED.value)
+            worksheet3 = workbook.add_worksheet(Enum_Excel.Spreadsheet_name.SPEED_TEST_DEVELOPING.value)
+
+        elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
+            print('Creating volume test worksheet ')
+            worksheet = workbook.add_worksheet(name)
+            worksheet2 = workbook.add_worksheet(Enum_Excel.Spreadsheet_name.VOLUME_TEST_DEVELOPED.value)
+            worksheet3 = workbook.add_worksheet(Enum_Excel.Spreadsheet_name.VOLUME_TEST_DEVELOPING.value)
+
 
         year = "2019/2020"
         duration = '{} weeks'.format(len(data[0]['d']))
         weeks = data[0]['d']
         columns = []
 
-        if name == 'Speed Test':
+        if name == Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value:
             columns = ["Year", "Country", "Duration", "Performance average (fixed) (Mbps)",
                        "Performance average (mobile) (Mbps)"]
 
             for week in weeks:
                 columns.append('{}  (Fixed | Mobile) (Mbps)'.format(week))
 
-        else:
+        elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
             columns = ["Year", "Country", "Duration", "Volume average (fixed) (%)",
                        "Volume average (mobile) (%)"]
 
@@ -90,20 +233,23 @@ class Excel:
         # Header
         for column in columns:
             worksheet.write(row, col, column, excel_format)
+            worksheet2.write(row, col, column, excel_format)
+            worksheet3.write(row, col, column, excel_format)
+
             col += 1
 
-        worksheet.set_column(0, 0, 10)
-        worksheet.set_column(1, 1, 20)
-        worksheet.set_column(3, col, 30)
-        worksheet.freeze_panes(1, 0)  # Freeze the first row.
+        worksheet = self.set_worksheet_attributes(worksheet, col)
+        worksheet2 = self.set_worksheet_attributes(worksheet2, col)
+        worksheet3 = self.set_worksheet_attributes(worksheet3, col)
 
         col = 0
         row = 1
 
-        self.create_rows_and_columns(worksheet, row, col, year, duration, name)
+        self.create_rows_and_columns(worksheet, worksheet2, worksheet3, row, col, year,
+                                     duration, name)
 
     def create_worksheets_remote(self, name, excel_format):
-        if name == 'Remote Test':
+        if name == Enum_Excel.Spreadsheet_name.REMOTE_TEST.value:
             print('Creating remote worksheet ')
 
         else:
@@ -171,7 +317,7 @@ class Excel:
         excel_format.set_bold()
         excel_format.set_color('red')
 
-        if test_type == 'Speeds':
+        if test_type == Enum.FileType.Speed.value:
             # t1 = time.perf_counter()
             # self.create_worksheets('Speed Test', excel_format)
             # t2 = time.perf_counter()
@@ -184,18 +330,18 @@ class Excel:
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 t1 = time.perf_counter()
-                executor.submit(self.create_worksheets, 'Speed Test', excel_format)
+                executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value, excel_format)
                 t2 = time.perf_counter()
                 print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
                 t1 = time.perf_counter()
-                executor.submit(self.create_worksheets, 'Volume Test', excel_format)
+                executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value, excel_format)
                 t2 = time.perf_counter()
                 print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
-        elif test_type == 'Remote':
+        elif test_type == Enum.FileType.Remote.value:
             t1 = time.perf_counter()
-            self.create_worksheets_remote('Remote Test', excel_format)
+            self.create_worksheets_remote(Enum_Excel.Spreadsheet_name.REMOTE_TEST.value, excel_format)
             t2 = time.perf_counter()
             print('Remote Work worksheet time taken: {:.2f}'.format(t2 - t1))
 
