@@ -175,12 +175,15 @@ class Excel:
         global data
 
         # Data
+        # Creating the speeds spreadsheets for global, developed and developing countries
         if name == Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value:
             self.create_rows_and_columns_speeds(worksheet, worksheet2, worksheet3, row, col, year, duration, data)
 
+        # Creating the volume spreadsheets for global, developed and developing countries
         elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
             self.create_rows_and_columns_volume(worksheet, worksheet2, worksheet3, row, col, year, duration, data)
 
+    # Setting the column attributes for the Internet Performance spreadsheets
     @staticmethod
     def set_worksheet_attributes(worksheet, col):
         worksheet.set_column(0, 0, 10)
@@ -190,6 +193,7 @@ class Excel:
 
         return worksheet
 
+    # init method to create the Internet Performance spreadsheets
     def create_worksheets(self, name, excel_format):
         global data, worksheet, worksheet2, worksheet3
         global workbook
@@ -248,6 +252,7 @@ class Excel:
         self.create_rows_and_columns(worksheet, worksheet2, worksheet3, row, col, year,
                                      duration, name)
 
+    # init method to create the Remote work spreadsheet
     def create_worksheets_remote(self, name, excel_format):
         if name == Enum_Excel.Spreadsheet_name.REMOTE_TEST.value:
             print('Creating remote worksheet ')
@@ -306,6 +311,7 @@ class Excel:
         #
         # self.create_rows_and_columns(worksheet, row, col, year, duration, name)
 
+    # Creating the Excel workbooks and start of the process
     def create_excel(self, name_of_file, test_type):
         print('Creating workbook')
         global workbook

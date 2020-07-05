@@ -7,6 +7,7 @@ global json_string
 
 class Speed_test:
 
+    # To be used if can't get data from Ookla, then read last known local data
     def read_File(self):
         json_string = ''
         with open('../Inputs/input.txt') as file:
@@ -15,44 +16,47 @@ class Speed_test:
 
         return json_string
 
-    def translate_JSONArray(self, jsonString):
-        passthrough = False
-        s = ''
-        lines = jsonString.split('\n')
+    # Old method to convert raw to JSON
+    # def translate_JSONArray(self, jsonString):
+    #     passthrough = False
+    #     s = ''
+    #     lines = jsonString.split('\n')
+    #
+    #     for j in range(len(lines)):
+    #         elements = lines[j].split(":")
+    #
+    #         for i in range(len(elements)):
+    #             'Skips lines that have brackets'
+    #             if not elements[0] in "[" and not elements[0] in "]" and not elements[0] in "{" and not elements[0] in "}" and not elements[0] in "'\t},'":
+    #
+    #                 'Find that initial country name line and replace it with a bracket'
+    #                 if elements[0] in "\"" or elements[1] in ' {':
+    #                    lines[j] = "{"
+    #
+    #                 else:
+    #                     if (elements[0] in "\t\tfvc" or elements[0] in "\t\tmvc") and not passthrough:
+    #                         elements[1] = elements[1].replace(".", "0.")
+    #
+    #                         # print(elements[1])
+    #                         passthrough = True
+    #
+    #                     elif elements[0] in "\t\tfsc" or elements[0] in "\t\tfj" or elements[0] in "\t\tmsc" or elements[0] in "\t\tfu" or elements[0] in "\t\tfl":
+    #                         lines[j] = ""
+    #
+    #                     else:
+    #                         first = "\t\t" + '"' + elements[0][elements[0].index("\t") + 2 : len(elements[0])] + '"'
+    #                         lines[j] = first + ": " + elements[1]
+    #                     'find the volume arrays and convert the volumes to a JSON format'
+    #
+    #         passthrough = False
+    #
+    #     for line in lines:
+    #         s += line
+    #
+    #     return s
 
-        for j in range(len(lines)):
-            elements = lines[j].split(":")
 
-            for i in range(len(elements)):
-                'Skips lines that have brackets'
-                if not elements[0] in "[" and not elements[0] in "]" and not elements[0] in "{" and not elements[0] in "}" and not elements[0] in "'\t},'":
-
-                    'Find that initial country name line and replace it with a bracket'
-                    if elements[0] in "\"" or elements[1] in ' {':
-                       lines[j] = "{"
-
-                    else:
-                        if (elements[0] in "\t\tfvc" or elements[0] in "\t\tmvc") and not passthrough:
-                            elements[1] = elements[1].replace(".", "0.")
-
-                            # print(elements[1])
-                            passthrough = True
-
-                        elif elements[0] in "\t\tfsc" or elements[0] in "\t\tfj" or elements[0] in "\t\tmsc" or elements[0] in "\t\tfu" or elements[0] in "\t\tfl":
-                            lines[j] = ""
-
-                        else:
-                            first = "\t\t" + '"' + elements[0][elements[0].index("\t") + 2 : len(elements[0])] + '"'
-                            lines[j] = first + ": " + elements[1]
-                        'find the volume arrays and convert the volumes to a JSON format'
-
-            passthrough = False
-
-        for line in lines:
-            s += line
-
-        return s
-
+    # Converting string to JSON and writing the JSON to a local file
     def convert_String_To_Json(self, json1):
         print('Convert to JSON')
 
@@ -75,6 +79,7 @@ class Speed_test:
 
         return json_Object
 
+    # Converting Ookla data to JSON format
     def translate_JSONArray2(self, jsonString):
         print('Transforming data', end=' ')
         t1 = time.perf_counter()
@@ -140,6 +145,7 @@ class Speed_test:
 
         return temp
 
+    # Converting Ip Buffer data to JSON format and
     @staticmethod
     def remote_data_to_json(remote):
         jq = json.dumps(remote, indent=4)

@@ -8,17 +8,20 @@ source = ''
 
 class Web_Scrape:
 
+    # Setting the URL link
     @staticmethod
     def set_source(url):
         global source
         source = url
 
+    # Getting the URL link
     @staticmethod
     def get_source():
         global source
 
         return source
 
+    # Getting data from Ookla
     def speed_and_volume_data(self):
         print('Getting data from Ookla', end=' ')
         t1 = time.perf_counter()
@@ -39,6 +42,7 @@ class Web_Scrape:
 
         return script
 
+    # Getting data from Ip Buffer and converting it to a JSON format
     def remote_work_data(self):
         print('Getting data from Ip.buffer')
         t1 = time.perf_counter()
@@ -95,8 +99,10 @@ class Web_Scrape:
 
         t2 = time.perf_counter()
         print('Time take to get data: {:.2f}'.format(t2 - t1))
+
         return names
 
+    # Web scraping component
     def get_data(self):
 
         try:
