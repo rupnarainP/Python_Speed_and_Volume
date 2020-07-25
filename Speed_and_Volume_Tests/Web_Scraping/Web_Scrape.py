@@ -30,7 +30,7 @@ class Web_Scrape:
 
         java_script = soup.find_all('script', type='text/javascript')
 
-        script = java_script[3]
+        script = java_script[4]
         script = str(script)
         # print(script)
         # print(script[script.index('Afghanistan'): script.index('"PW5Z"') - 5])

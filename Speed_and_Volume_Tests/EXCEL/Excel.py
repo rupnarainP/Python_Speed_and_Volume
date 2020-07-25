@@ -74,8 +74,8 @@ class Excel:
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
 
-                for i in range(len(country['d'])):
-                    worksheet2.write(row2, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+                for j in range(len(country['d'])):
+                    worksheet2.write(row2, j + 5, '{} | {}'.format(country['fd'][j], country['md'][j]))
 
                 row2 += 1
 
@@ -86,8 +86,8 @@ class Excel:
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
 
-                for i in range(len(country['d'])):
-                    worksheet3.write(row3, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+                for g in range(len(country['d'])):
+                    worksheet3.write(row3, g + 5, '{} | {}'.format(country['fd'][g], country['md'][g]))
 
                 row3 += 1
 
@@ -151,9 +151,9 @@ class Excel:
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
 
-                for i in range(len(country['d'])):
-                    worksheet2.write(row2, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
-                                                                         float(country['mvc'][i] * 100)))
+                for p in range(len(country['d'])):
+                    worksheet2.write(row2, p + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][p] * 100),
+                                                                         float(country['mvc'][p] * 100)))
                 row2 += 1
 
             else:
@@ -163,9 +163,9 @@ class Excel:
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
 
-                for i in range(len(country['d'])):
-                    worksheet3.write(row3, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
-                                                                         float(country['mvc'][i] * 100)))
+                for o in range(len(country['d'])):
+                    worksheet3.write(row3, o + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][o] * 100),
+                                                                         float(country['mvc'][o] * 100)))
                 row3 += 1
 
 
@@ -334,16 +334,19 @@ class Excel:
             # t2 = time.perf_counter()
             # print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
+            t1 = time.perf_counter()
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                t1 = time.perf_counter()
                 executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value, excel_format)
-                t2 = time.perf_counter()
-                print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
-                t1 = time.perf_counter()
+            t2 = time.perf_counter()
+            print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
+
+            t1 = time.perf_counter()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
                 executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value, excel_format)
-                t2 = time.perf_counter()
-                print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
+
+            t2 = time.perf_counter()
+            print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
         elif test_type == Enum.FileType.Remote.value:
             t1 = time.perf_counter()
