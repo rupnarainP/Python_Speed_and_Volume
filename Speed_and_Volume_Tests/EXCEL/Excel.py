@@ -46,6 +46,7 @@ class Excel:
                     country['n'] == 'France' or \
                     country['n'] == 'Germany' or \
                     country['n'] == 'Greece' or \
+                    country['n'] == 'Hungary' or \
                     country['n'] == 'Hong Kong (SAR)' or \
                     country['n'] == 'Ireland' or \
                     country['n'] == 'Israel' or \
@@ -123,6 +124,7 @@ class Excel:
                     country['n'] == 'France' or \
                     country['n'] == 'Germany' or \
                     country['n'] == 'Greece' or \
+                    country['n'] == 'Hungary' or \
                     country['n'] == 'Hong Kong (SAR)' or \
                     country['n'] == 'Ireland' or \
                     country['n'] == 'Israel' or \
