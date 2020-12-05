@@ -30,8 +30,12 @@ class Excel:
             worksheet.write(row, col + 3, fixed)
             worksheet.write(row, col + 4, mobile)
 
-            for i in range(len(country['d'])):
-                worksheet.write(row, i + 5, '{} | {}'.format(country['fd'][i], country['md'][i]))
+            count = 0
+
+            for i in range(0, len(country['d']), 2):
+                worksheet.write(row, i + 5, '{}'.format(country['fd'][count]))
+                worksheet.write(row, i + 6, '{}'.format(country['md'][count]))
+                count += 1
 
             row += 1
 
@@ -76,8 +80,11 @@ class Excel:
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
 
-                for j in range(len(country['d'])):
-                    worksheet2.write(row2, j + 5, '{} | {}'.format(country['fd'][j], country['md'][j]))
+                count = 0
+                for j in range(0, len(country['d']), 2):
+                    worksheet2.write(row2, j + 5, '{}'.format(country['fd'][count]))
+                    worksheet2.write(row2, j + 6, '{}'.format(country['md'][count]))
+                    count += 1
 
                 row2 += 1
 
@@ -88,11 +95,13 @@ class Excel:
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
 
-                for g in range(len(country['d'])):
-                    worksheet3.write(row3, g + 5, '{} | {}'.format(country['fd'][g], country['md'][g]))
-
+                count = 0
+                for g in range(0, len(country['d']), 2):
+                    worksheet3.write(row3, g + 5, '{}'.format(country['fd'][count]))
+                    worksheet3.write(row3, g + 6, '{}'.format(country['md'][count]))
+                    count += 1
+                    
                 row3 += 1
-
 
     def create_rows_and_columns_volume(self, worksheet, worksheet2, worksheet3, row, col, year, duration, data):
         row2 = row
@@ -108,9 +117,12 @@ class Excel:
             worksheet.write(row, col + 3, fixed)
             worksheet.write(row, col + 4, mobile)
 
-            for i in range(len(country['d'])):
-                worksheet.write(row, i + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][i] * 100),
-                                                                     float(country['mvc'][i] * 100)))
+            count = 0
+            for i in range(0, len(country['d']), 2):
+                worksheet.write(row, i + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                worksheet.write(row, i + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+                count += 1
+
             row += 1
 
             if country['n'] == 'Australia' or \
@@ -154,9 +166,12 @@ class Excel:
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
 
-                for p in range(len(country['d'])):
-                    worksheet2.write(row2, p + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][p] * 100),
-                                                                         float(country['mvc'][p] * 100)))
+                count = 0
+                for p in range(0, len(country['d']), 2):
+                    worksheet2.write(row2, p + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                    worksheet2.write(row2, p + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+                    count += 1
+
                 row2 += 1
 
             else:
@@ -166,12 +181,13 @@ class Excel:
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
 
-                for o in range(len(country['d'])):
-                    worksheet3.write(row3, o + 5, '{:.2f} | {:.2f}'.format(float(country['fvc'][o] * 100),
-                                                                         float(country['mvc'][o] * 100)))
+                count = 0
+                for o in range(0, len(country['d']), 2):
+                    worksheet3.write(row3, o + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                    worksheet3.write(row3, o + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+                    count += 1
+
                 row3 += 1
-
-
 
     def create_rows_and_columns(self, worksheet, worksheet2, worksheet3, row, col, year,
                                 duration, name):
@@ -224,14 +240,16 @@ class Excel:
                        "Performance average (mobile) (Mbps)"]
 
             for week in weeks:
-                columns.append('{}  (Fixed | Mobile) (Mbps)'.format(week))
+                columns.append('{}  (Fixed) (Mbps)'.format(week))
+                columns.append('{}  (Mobile) (Mbps)'.format(week))
 
         elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
             columns = ["Year", "Country", "Duration", "Volume average (fixed) (%)",
                        "Volume average (mobile) (%)"]
 
             for week in weeks:
-                columns.append('{}  (Fixed | Mobile) (%)'.format(week))
+                columns.append('{}  (Fixed) (%)'.format(week))
+                columns.append('{}  (Mobile) (%)'.format(week))
 
         # Start from the first cell. Rows and columns are zero indexed.
         row = 0
