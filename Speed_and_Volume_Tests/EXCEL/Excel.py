@@ -1,12 +1,13 @@
 import xlsxwriter
 import concurrent.futures
 import time
-from API import Calculation_API as calc
+from API import Calculation_API as calculationApi
 from Enums import Enum
 from Enums import Enum_Excel
 
 data = ''
 workbook = ''
+
 
 class Excel:
 
@@ -20,8 +21,8 @@ class Excel:
         row3 = row
 
         for country in data:
-            fixed = calc.average_speeds(country['fd'])
-            mobile = calc.average_speeds(country['md'])
+            fixed = calculationApi.average_speeds(country['fd'])
+            mobile = calculationApi.average_speeds(country['md'])
 
             worksheet.write(row, col, year)
             worksheet.write(row, col + 1, country['n'])
@@ -98,8 +99,8 @@ class Excel:
         row3 = row
 
         for country in data:
-            fixed = calc.average_volumes(country['fvc'])
-            mobile = calc.average_volumes(country['mvc'])
+            fixed = calculationApi.average_volumes(country['fvc'])
+            mobile = calculationApi.average_volumes(country['mvc'])
 
             worksheet.write(row, col, year)
             worksheet.write(row, col + 1, country['n'])

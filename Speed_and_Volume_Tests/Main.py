@@ -27,9 +27,6 @@ class Main:
     # Create the Excel spreadsheet
     excel.create_excel(Enum.FileName.SpeedAndVolume.value, Enum.FileType.Speed.value)
 
-
-
-
     # Set Remote work data source
     scrape.set_source(Enum.Urls.IpBuffer.value)
     # Get Remote work data and transform into a Json format
