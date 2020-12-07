@@ -24,17 +24,49 @@ class Excel:
             fixed = calculationApi.average_speeds(country['fd'])
             mobile = calculationApi.average_speeds(country['md'])
 
+            fixed_array_before = []
+            fixed_array_during = []
+            mobile_array_before = []
+            mobile_array_during = []
+
+            counter = 0
+            for week in country['fd']:
+                if counter <= 13:
+                    fixed_array_before.append(float(week))
+                else:
+                    fixed_array_during.append(float(week))
+                counter += 1
+
+            counter = 0
+            for week in country['md']:
+                if counter <= 13:
+                    mobile_array_before.append(float(week))
+                else:
+                    mobile_array_during.append(float(week))
+                counter += 1
+
+            counter = 0
+            fixed_before = calculationApi.average_speeds(fixed_array_before)
+            fixed_during = calculationApi.average_speeds(fixed_array_during)
+
+            mobile_before = calculationApi.average_speeds(mobile_array_before)
+            mobile_during = calculationApi.average_speeds(mobile_array_during)
+
             worksheet.write(row, col, year)
             worksheet.write(row, col + 1, country['n'])
             worksheet.write(row, col + 2, duration)
             worksheet.write(row, col + 3, fixed)
             worksheet.write(row, col + 4, mobile)
+            worksheet.write(row, col + 5, fixed_before)
+            worksheet.write(row, col + 6, fixed_during)
+            worksheet.write(row, col + 7, mobile_before)
+            worksheet.write(row, col + 8, mobile_during)
 
             count = 0
 
-            for i in range(0, len(country['d']), 2):
-                worksheet.write(row, i + 5, '{}'.format(country['fd'][count]))
-                worksheet.write(row, i + 6, '{}'.format(country['md'][count]))
+            for i in range(0, len(country['d']) * 2, 2):
+                worksheet.write(row, i + 9, '{}'.format(country['fd'][count]))
+                worksheet.write(row, i + 10, '{}'.format(country['md'][count]))
                 count += 1
 
             row += 1
@@ -79,11 +111,15 @@ class Excel:
                 worksheet2.write(row2, col + 2, duration)
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
+                worksheet2.write(row2, col + 5, fixed_before)
+                worksheet2.write(row2, col + 6, fixed_during)
+                worksheet2.write(row2, col + 7, mobile_before)
+                worksheet2.write(row2, col + 8, mobile_during)
 
                 count = 0
-                for j in range(0, len(country['d']), 2):
-                    worksheet2.write(row2, j + 5, '{}'.format(country['fd'][count]))
-                    worksheet2.write(row2, j + 6, '{}'.format(country['md'][count]))
+                for j in range(0, len(country['d']) * 2, 2):
+                    worksheet2.write(row2, j + 9, '{}'.format(country['fd'][count]))
+                    worksheet2.write(row2, j + 10, '{}'.format(country['md'][count]))
                     count += 1
 
                 row2 += 1
@@ -94,11 +130,15 @@ class Excel:
                 worksheet3.write(row3, col + 2, duration)
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
+                worksheet3.write(row3, col + 5, fixed_before)
+                worksheet3.write(row3, col + 6, fixed_during)
+                worksheet3.write(row3, col + 7, mobile_before)
+                worksheet3.write(row3, col + 8, mobile_during)
 
                 count = 0
-                for g in range(0, len(country['d']), 2):
-                    worksheet3.write(row3, g + 5, '{}'.format(country['fd'][count]))
-                    worksheet3.write(row3, g + 6, '{}'.format(country['md'][count]))
+                for g in range(0, len(country['d']) * 2, 2):
+                    worksheet3.write(row3, g + 9, '{}'.format(country['fd'][count]))
+                    worksheet3.write(row3, g + 10, '{}'.format(country['md'][count]))
                     count += 1
 
                 row3 += 1
@@ -111,16 +151,47 @@ class Excel:
             fixed = calculationApi.average_volumes(country['fvc'])
             mobile = calculationApi.average_volumes(country['mvc'])
 
+            fixed_array_before = []
+            fixed_array_during = []
+            mobile_array_before = []
+            mobile_array_during = []
+
+            counter = 0
+            for week in country['fvc']:
+                if counter <= 13:
+                    fixed_array_before.append(float(week))
+                else:
+                    fixed_array_during.append(float(week))
+                counter += 1
+
+            counter = 0
+            for week in country['mvc']:
+                if counter <= 13:
+                    mobile_array_before.append(float(week))
+                else:
+                    mobile_array_during.append(float(week))
+                counter += 1
+
+            fixed_before = calculationApi.average_speeds(fixed_array_before)
+            mobile_before = calculationApi.average_speeds(mobile_array_before)
+
+            fixed_during = calculationApi.average_speeds(fixed_array_during)
+            mobile_during = calculationApi.average_speeds(mobile_array_during)
+
             worksheet.write(row, col, year)
             worksheet.write(row, col + 1, country['n'])
             worksheet.write(row, col + 2, duration)
             worksheet.write(row, col + 3, fixed)
             worksheet.write(row, col + 4, mobile)
+            worksheet.write(row, col + 5, fixed_before)
+            worksheet.write(row, col + 6, fixed_during)
+            worksheet.write(row, col + 7, mobile_before)
+            worksheet.write(row, col + 8, mobile_during)
 
             count = 0
-            for i in range(0, len(country['d']), 2):
-                worksheet.write(row, i + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
-                worksheet.write(row, i + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+            for i in range(0, len(country['d']) * 2, 2):
+                worksheet.write(row, i + 9, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                worksheet.write(row, i + 10, '{:.2f}'.format(float(country['mvc'][count] * 100)))
                 count += 1
 
             row += 1
@@ -165,11 +236,15 @@ class Excel:
                 worksheet2.write(row2, col + 2, duration)
                 worksheet2.write(row2, col + 3, fixed)
                 worksheet2.write(row2, col + 4, mobile)
+                worksheet2.write(row2, col + 5, fixed_before)
+                worksheet2.write(row2, col + 6, fixed_during)
+                worksheet2.write(row2, col + 7, mobile_before)
+                worksheet2.write(row2, col + 8, mobile_during)
 
                 count = 0
-                for p in range(0, len(country['d']), 2):
-                    worksheet2.write(row2, p + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
-                    worksheet2.write(row2, p + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+                for p in range(0, len(country['d']) * 2, 2):
+                    worksheet2.write(row2, p + 9, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                    worksheet2.write(row2, p + 10, '{:.2f}'.format(float(country['mvc'][count] * 100)))
                     count += 1
 
                 row2 += 1
@@ -180,11 +255,15 @@ class Excel:
                 worksheet3.write(row3, col + 2, duration)
                 worksheet3.write(row3, col + 3, fixed)
                 worksheet3.write(row3, col + 4, mobile)
+                worksheet3.write(row3, col + 5, fixed_before)
+                worksheet3.write(row3, col + 6, fixed_during)
+                worksheet3.write(row3, col + 7, mobile_before)
+                worksheet3.write(row3, col + 8, mobile_during)
 
                 count = 0
-                for o in range(0, len(country['d']), 2):
-                    worksheet3.write(row3, o + 5, '{:.2f}'.format(float(country['fvc'][count] * 100)))
-                    worksheet3.write(row3, o + 6, '{:.2f}'.format(float(country['mvc'][count] * 100)))
+                for o in range(0, len(country['d']) * 2, 2):
+                    worksheet3.write(row3, o + 9, '{:.2f}'.format(float(country['fvc'][count] * 100)))
+                    worksheet3.write(row3, o + 10, '{:.2f}'.format(float(country['mvc'][count] * 100)))
                     count += 1
 
                 row3 += 1
@@ -236,16 +315,31 @@ class Excel:
         columns = []
 
         if name == Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value:
-            columns = ["Year", "Country", "Duration", "Performance average (fixed) (Mbps)",
-                       "Performance average (mobile) (Mbps)"]
+            columns = ["Year",
+                       "Country",
+                       "Duration",
+                       "Total Performance average (fixed) (Mbps)",
+                       "Total Performance average (mobile) (Mbps)",
+                       "Performance average before lockdown (fixed) (Mbps)",
+                       "Performance average during lockdown (fixed) (Mbps)",
+                       "Performance average before lockdown (mobile) (Mbps)",
+                       "Performance average during lockdown (mobile) (Mbps)"]
 
             for week in weeks:
                 columns.append('{}  (Fixed) (Mbps)'.format(week))
                 columns.append('{}  (Mobile) (Mbps)'.format(week))
 
         elif name == Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value:
-            columns = ["Year", "Country", "Duration", "Volume average (fixed) (%)",
-                       "Volume average (mobile) (%)"]
+            columns = ["Year",
+                       "Country",
+                       "Duration",
+                       "Total Volume average (fixed) (%)",
+                       "Total Volume average (mobile) (%)",
+                       "Volume average before lockdown (fixed) (%)",
+                       "Volume average during lockdown (fixed) (%)",
+                       "Volume average before lockdown (mobile) (%)",
+                       "Volume average during lockdown (mobile) (%)"
+                       ]
 
             for week in weeks:
                 columns.append('{}  (Fixed) (%)'.format(week))
@@ -345,29 +439,29 @@ class Excel:
         excel_format.set_color('red')
 
         if test_type == Enum.FileType.Speed.value:
-            # t1 = time.perf_counter()
-            # self.create_worksheets('Speed Test', excel_format)
-            # t2 = time.perf_counter()
-            # print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
-            #
-            # t1 = time.perf_counter()
-            # self.create_worksheets('Volume Test', excel_format)
-            # t2 = time.perf_counter()
-            # print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
-
             t1 = time.perf_counter()
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value, excel_format)
-
+            self.create_worksheets(Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value, excel_format)
             t2 = time.perf_counter()
             print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
             t1 = time.perf_counter()
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value, excel_format)
-
+            self.create_worksheets(Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value, excel_format)
             t2 = time.perf_counter()
             print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
+
+            # t1 = time.perf_counter()
+            # with concurrent.futures.ThreadPoolExecutor() as executor:
+            #     executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.SPEED_TEST_GLOBAL.value, excel_format)
+            #
+            # t2 = time.perf_counter()
+            # print('Speed Tests worksheet time taken: {:.2f}'.format(t2 - t1))
+            #
+            # t1 = time.perf_counter()
+            # with concurrent.futures.ThreadPoolExecutor() as executor:
+            #     executor.submit(self.create_worksheets, Enum_Excel.Spreadsheet_name.VOLUME_TEST_GLOBAL.value, excel_format)
+            #
+            # t2 = time.perf_counter()
+            # print('Volume Tests worksheet time taken: {:.2f}'.format(t2 - t1))
 
         elif test_type == Enum.FileType.Remote.value:
             t1 = time.perf_counter()
