@@ -100,7 +100,7 @@ class Excel:
                     worksheet3.write(row3, g + 5, '{}'.format(country['fd'][count]))
                     worksheet3.write(row3, g + 6, '{}'.format(country['md'][count]))
                     count += 1
-                    
+
                 row3 += 1
 
     def create_rows_and_columns_volume(self, worksheet, worksheet2, worksheet3, row, col, year, duration, data):
